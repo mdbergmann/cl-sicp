@@ -1,12 +1,12 @@
-(defpackage :sicp-test
-  (:use :cl :fiveam :sicp)
+(defpackage :sicp.sicp2-test
+  (:use :cl :fiveam :sicp2)
   (:export #:run!
            #:all-tests
            #:nil))
-(in-package :sicp-test)
+(in-package :sicp.sicp2-test)
 
-(def-suite sicp-tests)
-(in-suite sicp-tests)
+(def-suite sicp2-tests)
+(in-suite sicp2-tests)
 
 (test map-test
   (is (equalp nil (mymap #'identity nil)))
@@ -14,8 +14,8 @@
   (is (equalp '(1 4 9) (mymap (lambda (x) (* x x)) '(1 2 3))))
   (is (equalp '(10 5 8) (mymap #'abs '(-10 -5 8)))))
 
-(test foreach-test
-  (foreach #'print '(1 2 3 4)))
+(test for-each-test
+  (for-each #'print '(1 2 3 4)))
 
 (test count-leaves-test
   (is (= 4 (count-leaves (cons (list 1 2) (list 3 4))))))
@@ -52,3 +52,5 @@
 
 (test ac-count-leaves--map
   (is (= 4 (sicp::ac-count-leaves--map (cons 1 (cons 2 (cons 3 (cons 4 nil))))))))
+
+(run! 'sicp2-tests)

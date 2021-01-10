@@ -1,7 +1,8 @@
-(defpackage :sicp
+(defpackage :sicp.sicp2
   (:use :cl)
+  (:nicknames :sicp2)
   (:export #:mymap
-           #:foreach
+           #:for-each
            #:count-leaves
            #:flatten
            #:accumulate
@@ -9,7 +10,7 @@
            #:foldr
            #:flatmap))
 
-(in-package :sicp)
+(in-package :sicp2)
 
 (defun mymap (fun items)
   (if (null items)
@@ -17,12 +18,12 @@
       (cons (funcall fun (car items))
             (mymap fun (cdr items)))))
 
-(defun foreach (fun items)
+(defun for-each (fun items)
   (if (null items)
       nil
       (progn
         (funcall fun (car items))
-        (foreach fun (cdr items)))))
+        (for-each fun (cdr items)))))
 
 (defun count-leaves (items)
   (if (null items)
