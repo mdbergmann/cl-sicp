@@ -34,6 +34,10 @@
   (is (consp (integer-stream)))
   (is (= 5 (stream-ref (integer-stream) 5))))
 
+(test stream-filter-test
+  (is (= 1 (stream-ref (stream-filter #'oddp (integer-stream)) 0)))
+  (is (= 3 (stream-ref (stream-filter #'oddp (integer-stream)) 1))))
+
 (test take-test
   (is (equalp '(0 1 2 3 4) (take 5 (integer-stream)))))
 

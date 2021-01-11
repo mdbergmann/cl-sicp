@@ -9,6 +9,7 @@
            #:stream-cdr
            #:integer-stream
            #:stream-ref
+           #:stream-filter
            #:take)
   )
 
@@ -59,6 +60,16 @@
       (stream-ref
        (stream-cdr stream)
        (1- n))))
+
+(defun stream-filter (pred stream)
+  (cond
+    ((null stream)
+     nil)
+    ((funcall pred (stream-car stream))
+     (cons-stream (stream-car stream)
+                  (stream-filter pred (stream-cdr stream))))
+    (t
+     (stream-filter pred (stream-cdr stream)))))
 
 (defun take (n stream)
   (if (= n 0)
